@@ -1,7 +1,6 @@
 "use client";
 import axios from "axios";
 import Form from "next/form";
-import { useRouter } from "next/navigation";
 import { Task } from "../generated/prisma/client";
 import { ColumnType } from "./BoardView";
 import { capitalizeFirstLetter } from "../functions";

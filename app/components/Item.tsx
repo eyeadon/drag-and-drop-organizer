@@ -45,6 +45,7 @@ export default function Item({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TaskFormData>({
     resolver: zodResolver(taskSchema),
@@ -77,6 +78,7 @@ export default function Item({
     }
 
     await replaceTaskInBoard();
+    reset();
     setEditing(false);
   }
 

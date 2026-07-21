@@ -26,6 +26,7 @@ const AddTaskFormInColumn = ({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TaskFormData>({
     resolver: zodResolver(taskSchema),
@@ -58,6 +59,7 @@ const AddTaskFormInColumn = ({
     }
 
     await addNewTaskToBoard();
+    reset();
     setEditing(false);
   }
 
