@@ -62,8 +62,11 @@ const AddTaskFormInColumn = ({
   }
 
   return (
-    <div className="AddTaskButton">
-      <button className="flex flex-row cursor-pointer" onClick={handleAddTask}>
+    <div className="AddTaskItem">
+      <button
+        className="AddTaskButton flex flex-row cursor-pointer"
+        onClick={handleAddTask}
+      >
         <svg
           className="h-5 w-5"
           viewBox="2 -4 24 24"
@@ -80,7 +83,7 @@ const AddTaskFormInColumn = ({
         Add task
       </button>
       {isEditing && (
-        <form onSubmit={handleSubmit(createTask)} className="mt-2">
+        <form onSubmit={handleSubmit(createTask)} className="px-4 py-3">
           <div>
             {error && <p className="text-red-800">{error}</p>}
             <textarea

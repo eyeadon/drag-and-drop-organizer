@@ -298,7 +298,7 @@
   box-shadow: inset #1eb99d 0 0 0 2px;
 }
 
-.AddTaskButton {
+.AddTaskItem {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -307,9 +307,12 @@
   text-align: left;
   background: #cacaca;
   color: #404040;
-  padding: 12px 20px;
   border: none;
   border-radius: 5px;
+}
+
+.AddTaskButton {
+  padding: 12px 20px;
 }
 
 .Item {
