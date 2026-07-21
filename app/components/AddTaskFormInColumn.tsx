@@ -64,10 +64,9 @@ const AddTaskFormInColumn = ({
   return (
     <div className="AddTaskButton">
       <button className="flex flex-row cursor-pointer" onClick={handleAddTask}>
-        Add task...
         <svg
-          className="mx-1 h-5 w-5"
-          viewBox="-2 -2 24 24"
+          className="h-5 w-5"
+          viewBox="2 -4 24 24"
           fill="currentColor"
           aria-hidden="true"
           stroke="currentColor"
@@ -78,6 +77,7 @@ const AddTaskFormInColumn = ({
             d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"
           />
         </svg>
+        Add task
       </button>
       {isEditing && (
         <form onSubmit={handleSubmit(createTask)} className="mt-2">
