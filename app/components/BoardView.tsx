@@ -65,17 +65,17 @@ export default function BoardView({
   };
 
   const handleUpdateColumn = async (newTask: Task, columnKey: string) => {
-    let updatedArray: Task[] = [...columns[columnKey]];
+    let updatedTaskArray: Task[] = [...columns[columnKey]];
 
     if (columns[columnKey].some((task) => task.id === newTask.id)) {
-      updatedArray = updatedArray.map((task) =>
+      updatedTaskArray = updatedTaskArray.map((task) =>
         task.id === newTask.id ? newTask : task,
       );
     } else {
-      updatedArray = [...updatedArray, newTask];
+      updatedTaskArray = [...updatedTaskArray, newTask];
     }
 
-    const updatedColumns = { ...columns, [columnKey]: updatedArray };
+    const updatedColumns = { ...columns, [columnKey]: updatedTaskArray };
 
     setColumns(updatedColumns);
 
