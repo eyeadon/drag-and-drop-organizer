@@ -111,7 +111,10 @@ const AddTaskFormInColumn = ({
               Done
             </button>
             <button
-              onClick={() => setEditing(false)}
+              onClick={() => {
+                setEditing(false);
+                reset();
+              }}
               className="cursor-pointer bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-500"
             >
               Cancel
