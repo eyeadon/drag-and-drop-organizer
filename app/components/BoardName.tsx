@@ -1,7 +1,7 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { boardSchema } from "../api/validationSchemas";
@@ -36,10 +36,15 @@ const BoardName = ({
     register,
     handleSubmit,
     reset,
+    setFocus,
     formState: { errors },
   } = useForm<TaskFormData>({
     resolver: zodResolver(boardSchema),
   });
+
+  useEffect(() => {
+    setFocus("name");
+  }, [isEditingBoardName]);
 
   async function editBoardName(data: { name: string }) {
     setSubmitting(true);

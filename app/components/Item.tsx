@@ -1,7 +1,7 @@
 "use client";
 import { useSortable } from "@dnd-kit/react/sortable";
 import axios from "axios";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Task } from "../generated/prisma/client";
 import ItemDropdownMenu from "./ItemDropdownMenu";
 import { z } from "zod";
@@ -46,10 +46,15 @@ export default function Item({
     register,
     handleSubmit,
     reset,
+    setFocus,
     formState: { errors },
   } = useForm<TaskFormData>({
     resolver: zodResolver(taskSchema),
   });
+
+  useEffect(() => {
+    setFocus("content");
+  }, [isEditing]);
 
   const handleEditTask = () => setEditing(!isEditing);
 

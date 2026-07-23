@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { taskSchema } from "../api/validationSchemas";
 import { z } from "zod";
@@ -27,10 +27,15 @@ const AddTaskFormInColumn = ({
     register,
     handleSubmit,
     reset,
+    setFocus,
     formState: { errors },
   } = useForm<TaskFormData>({
     resolver: zodResolver(taskSchema),
   });
+
+  useEffect(() => {
+    setFocus("content");
+  }, [isEditing]);
 
   const handleAddTask = () => setEditing(!isEditing);
 
