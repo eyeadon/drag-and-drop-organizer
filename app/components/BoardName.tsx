@@ -112,11 +112,21 @@ const BoardName = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="cursor-pointer border border-blue-600 bg-blue-500 text-white text-lg rounded-lg px-3 py-2 mr-2 mb-2 hover:bg-blue-600 hover:border-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:pointer-events-none"
+                className="cursor-pointer bg-blue-500 text-white text-lg rounded-lg px-3 py-2 mr-2 mb-2 hover:bg-blue-600 hover:border-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:pointer-events-none"
               >
                 Save
               </button>
             </form>
+            <button
+              onClick={() => {
+                handleEditingBoardName(false);
+                reset();
+              }}
+              className="cursor-pointer bg-gray-200 text-black text-lg rounded-lg px-3 py-2 mr-2 mb-2 hover:bg-gray-500"
+            >
+              Cancel
+            </button>
+
             <button
               disabled={isDeleting}
               onClick={async () => {
@@ -125,9 +135,9 @@ const BoardName = ({
                 await removeBoard(board?.id);
                 setDeleting(false);
               }}
-              className="cursor-pointer border border-red-600 bg-red-500 text-white text-lg rounded-lg px-3 py-2 mr-2 mb-2 hover:bg-red-600 hover:border-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:pointer-events-none"
+              className="cursor-pointer bg-red-500 text-white text-lg rounded-lg px-3 py-2 mr-2 mb-2 hover:bg-red-600 hover:border-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:pointer-events-none"
             >
-              Delete
+              Delete Board
             </button>
             {errors && <p className="text-red-800">{errors.name?.message}</p>}
           </div>
