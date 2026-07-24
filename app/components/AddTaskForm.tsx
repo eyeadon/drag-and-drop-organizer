@@ -56,7 +56,7 @@ export default function AddTaskForm({
 
   return (
     <>
-      <div className="max-w-2xl mx-auto py-4">
+      <div className="max-w-2xl mx-auto pt-3 pb-4">
         <Form action={createTask} className="flex flex-row gap-3 items-end">
           <div className="flex flex-col">
             <label htmlFor="content" className="text-black text-lg mb-2">

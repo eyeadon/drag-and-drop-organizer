@@ -91,7 +91,7 @@ const BoardName = ({
     <>
       <div className="flex flex-row gap-2 items-start">
         <button
-          className="flex flex-row items-center cursor-pointer bg-gray-200 border border-gray-200 rounded-lg pl-3 pr-1 py-2 text-lg font-semibold mr-2 mb-2 hover:border-blue-600 hover:border"
+          className="flex flex-row items-center cursor-pointer bg-gray-200 border border-gray-200 rounded-lg pl-3 pr-1 py-2 text-lg font-semibold mr-2  hover:border-blue-600 hover:border"
           onClick={() => handleEditingBoardName(!isEditingBoardName)}
         >
           {board ? board.name : "Untitled Board"}
@@ -106,13 +106,13 @@ const BoardName = ({
               <input
                 id="name"
                 placeholder={board ? board.name : "Untitled Board"}
-                className="border bg-white text-lg rounded-lg px-3 py-2 mr-2 mb-2"
+                className="border bg-white text-lg rounded-lg px-3 py-2 mr-2 "
                 {...register("name")}
               />
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="cursor-pointer bg-blue-500 text-white text-lg rounded-lg px-3 py-2 mr-2 mb-2 hover:bg-blue-600 hover:border-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:pointer-events-none"
+                className="cursor-pointer bg-blue-500 text-white text-lg rounded-lg px-3 py-2 mr-2  hover:bg-blue-600 hover:border-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:pointer-events-none"
               >
                 Save
               </button>
@@ -122,7 +122,7 @@ const BoardName = ({
                 handleEditingBoardName(false);
                 reset();
               }}
-              className="cursor-pointer bg-gray-200 text-black text-lg rounded-lg px-3 py-2 mr-2 mb-2 hover:bg-gray-500"
+              className="cursor-pointer bg-gray-200 text-black text-lg rounded-lg px-3 py-2 mr-2  hover:bg-gray-500"
             >
               Cancel
             </button>
@@ -135,7 +135,7 @@ const BoardName = ({
                 await removeBoard(board?.id);
                 setDeleting(false);
               }}
-              className="cursor-pointer bg-red-500 text-white text-lg rounded-lg px-3 py-2 mr-2 mb-2 hover:bg-red-600 hover:border-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:pointer-events-none"
+              className="cursor-pointer bg-red-500 text-white text-lg rounded-lg px-3 py-2 mr-2  hover:bg-red-600 hover:border-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:pointer-events-none"
             >
               Delete Board
             </button>
