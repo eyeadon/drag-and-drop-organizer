@@ -41,8 +41,8 @@ export default function BoardView({
   };
 
   const [columns, setColumns] = useState<ColumnType>(startingColumns);
-  const previousColumns = useRef(columns);
   const [columnOrder, setColumnOrder] = useState(() => Object.keys(columns));
+  const previousColumns = useRef(columns);
 
   // set starting columns using board content
   useEffect(() => {

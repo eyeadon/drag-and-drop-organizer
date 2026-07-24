@@ -4,6 +4,7 @@ import Form from "next/form";
 import { Task } from "../generated/prisma/client";
 import { ColumnType } from "./BoardView";
 import { capitalizeFirstLetter } from "../functions";
+import { useRef } from "react";
 
 interface Props {
   authorId: number;
@@ -18,6 +19,8 @@ export default function AddTaskForm({
   handleUpdateColumn,
   handleAddColumn,
 }: Props) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   async function createTask(formData: FormData) {
     const content = formData.get("content") as string;
     const group = capitalizeFirstLetter(formData.get("group") as string);
@@ -59,11 +62,11 @@ export default function AddTaskForm({
             <label htmlFor="content" className="text-black text-lg mb-2">
               Task
             </label>
-            <textarea
+            <input
               id="content"
               name="content"
+              ref={inputRef}
               placeholder="Task..."
-              rows={1}
               className="w-full px-4 py-2 border rounded-lg bg-white"
             />
           </div>
@@ -71,11 +74,10 @@ export default function AddTaskForm({
             <label htmlFor="group" className="text-black text-lg mb-2">
               Group
             </label>
-            <textarea
+            <input
               id="group"
               name="group"
               placeholder="Group..."
-              rows={1}
               className="w-full px-4 py-2 border rounded-lg bg-white"
             />
           </div>
@@ -83,6 +85,9 @@ export default function AddTaskForm({
             <button
               type="submit"
               className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              onClick={() =>
+                inputRef.current ? inputRef.current.focus() : null
+              }
             >
               Add Task
             </button>
