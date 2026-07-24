@@ -9,12 +9,14 @@ interface Props {
   authorId: number;
   columns: ColumnType;
   handleUpdateColumn: (newTask: Task, columnKey: string) => void;
+  handleAddColumn: (newTask: Task, columnKey: string) => void;
 }
 
 export default function AddTaskForm({
   authorId,
   columns,
   handleUpdateColumn,
+  handleAddColumn,
 }: Props) {
   async function createTask(formData: FormData) {
     const content = formData.get("content") as string;
@@ -38,7 +40,9 @@ export default function AddTaskForm({
       if (response?.data) {
         for (const [key] of Object.entries(columns)) {
           if (key === group) {
-            handleUpdateColumn(response.data, key);
+            handleUpdateColumn(response.data, group);
+          } else {
+            handleAddColumn(response.data, group);
           }
         }
       }

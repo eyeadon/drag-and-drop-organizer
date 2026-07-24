@@ -61,7 +61,15 @@ export default function BoardView({
 
     if (response?.data) handleUpdateBoard(response.data);
 
-    router.refresh();
+    // router.refresh();
+  };
+
+  const handleAddColumn = async (newTask: Task, columnKey: string) => {
+    const updatedColumns = { ...columns, [columnKey]: [newTask] };
+    setColumns(updatedColumns);
+    setColumnOrder(() => Object.keys(updatedColumns));
+
+    await updateBoard(updatedColumns);
   };
 
   const handleUpdateColumn = async (newTask: Task, columnKey: string) => {
@@ -114,6 +122,7 @@ export default function BoardView({
           authorId={authorId}
           columns={columns}
           handleUpdateColumn={handleUpdateColumn}
+          handleAddColumn={handleAddColumn}
         />
       </div>
 
@@ -140,7 +149,7 @@ export default function BoardView({
             }
 
             if (source?.type === "column") {
-              setColumnOrder((columns) => move(columns, event));
+              setColumnOrder((prevColumns) => move(prevColumns, event));
             }
 
             saveBoard(board ? board.id : null, {
