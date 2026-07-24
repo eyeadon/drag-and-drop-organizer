@@ -16,7 +16,7 @@ const BoardMenu = ({ boards, authorId }: Props) => {
 
   const handleUpdateBoard = (board: Board | undefined) => {
     setSelectedBoard(board);
-    router.refresh();
+    // router.refresh();
   };
 
   const handleEditingBoardName = (flag: boolean) => {
@@ -37,7 +37,7 @@ const BoardMenu = ({ boards, authorId }: Props) => {
               event.preventDefault();
               setSelectedBoard(board);
               setEditingBoardName(false);
-              router.refresh();
+              // router.refresh();
             }}
           >
             {board.name}

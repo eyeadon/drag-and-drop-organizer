@@ -15,6 +15,7 @@ export default async function Home() {
   if (!user) notFound();
 
   const startingBoards = user.boards;
+  // console.log(user);
   // console.log(startingBoards);
 
   return (
