@@ -41,3 +41,15 @@ export async function saveBoard(
     console.error("Error patching or posting data:", error);
   }
 }
+
+export function arrayKeysToColumnType(arr: string[], columns: ColumnType) {
+  const columnsCopy: ColumnType = structuredClone(columns);
+  let orderedObject: ColumnType = {};
+
+  arr.forEach((key) => {
+    orderedObject[key] = columnsCopy[key];
+  });
+
+  console.log("arrayKeysToColumnType:", Object.keys(orderedObject));
+  return orderedObject;
+}

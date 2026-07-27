@@ -4,7 +4,7 @@ import { DragDropProvider } from "@dnd-kit/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import "../App.css";
-import { saveBoard } from "../functions";
+import { arrayKeysToColumnType, saveBoard } from "../functions";
 import { Board, Task } from "../generated/prisma/client";
 import AddTaskForm from "./AddTaskForm";
 import Column from "./Column";
@@ -41,7 +41,9 @@ export default function BoardView({
   };
 
   const [columns, setColumns] = useState<ColumnType>(startingColumns);
-  const [columnOrder, setColumnOrder] = useState(() => Object.keys(columns));
+  const [columnOrder, setColumnOrder] = useState(() =>
+    Object.keys(startingColumns),
+  );
   const previousColumns = useRef(columns);
 
   // set starting columns using board content
@@ -59,9 +61,14 @@ export default function BoardView({
       authorId,
     });
 
-    console.log("saveBoard response: ", response);
+    if (response?.data) {
+      console.log(
+        "saveBoard response: ",
+        Object.keys(JSON.parse(JSON.stringify(response.data.content))),
+      );
 
-    if (response?.data) handleUpdateBoard(response.data);
+      handleUpdateBoard(response.data);
+    }
 
     // router.refresh();
   };
@@ -138,7 +145,7 @@ export default function BoardView({
 
             if (source?.type === "column") return;
 
-            setColumns((columns) => move(columns, event));
+            setColumns((prevColumns) => move(prevColumns, event));
           }}
           onDragEnd={(event) => {
             const { source } = event.operation;
@@ -151,15 +158,26 @@ export default function BoardView({
             }
 
             if (source?.type === "column") {
-              setColumnOrder((prevColumns) => move(prevColumns, event));
+              setColumnOrder((prevColumns) => {
+                const updatedcolumnOrder = move(prevColumns, event);
+
+                console.log("updatedcolumnOrder:", updatedcolumnOrder);
+
+                const updatedColumns = arrayKeysToColumnType(
+                  updatedcolumnOrder,
+                  columns,
+                );
+                console.log("updatedColumns: ", Object.keys(updatedColumns));
+
+                updateBoard(updatedColumns);
+
+                return updatedcolumnOrder;
+              });
+
+              return;
             }
 
-            saveBoard(board ? board.id : null, {
-              name: board ? board.name : "Untitled Board",
-              content: columns,
-              authorId,
-            });
-
+            updateBoard(columns);
             // router.refresh();
           }}
         >

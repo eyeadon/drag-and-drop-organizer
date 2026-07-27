@@ -37,7 +37,7 @@ const BoardMenu = ({ boards, authorId }: Props) => {
               event.preventDefault();
               setSelectedBoard(board);
               setEditingBoardName(false);
-              // router.refresh();
+              router.refresh();
             }}
           >
             {board.name}
